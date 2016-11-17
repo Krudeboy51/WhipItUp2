@@ -89,13 +89,18 @@ class RecipeTableViewController: UITableViewController, UISearchBarDelegate {
         let recipe = jsonParse.mReicpeList[indexPath.row]
         let id = recipe["id"]!
         let recipeDetail = MashapeJsonParser()
+        recipeDetail.getData(id)
         let rec = recipeDetail.recipe
         
         let recipeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("recipeVC") as! RecipeViewController
         
         recipeVC.id = id
         
-        //recipeVC.rectitle = rec.title
+        recipeVC.recipe.title = recipeDetail.recipe.title
+        recipeVC.recipe.cookmin = rec.cookmin
+        recipeVC.recipe.ingredients = rec.ingredients
+        recipeVC.recipe.prepMin = rec.prepMin
+        recipeVC.image = jsonParse.imgList[id]
         
         //print("MRECIPE: \(rec.title)")
         

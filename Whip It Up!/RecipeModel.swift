@@ -15,7 +15,7 @@ class RecipeModel{
     var cookmin : Int?
     var title : String!
     var servings : Int!
-    var instructions : String!
+    var instructions : String?
     
     struct extendedIngredients {
         var info = ""

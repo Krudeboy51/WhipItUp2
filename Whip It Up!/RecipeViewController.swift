@@ -15,29 +15,55 @@ class RecipeViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var recipepreptime: UILabel!
     @IBOutlet weak var recipetitle: UILabel!
     @IBOutlet weak var recipeinstructions: UILabel!
+    @IBOutlet weak var recipeserving: UILabel!
     @IBOutlet weak var tbView: UITableView!
     
     var id = "1234"
-    var rectitle : String!
     
     var jsonParserDetail = MashapeJsonParser()
     var recipe = RecipeModel()
     
+    var image : UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        recipe = jsonParserDetail.getData(id)
-        print("RECTITLE: \(id)")
+        jsonParserDetail.getData(id)
+        print("ID: \(id)")
+        recipe = jsonParserDetail.recipe
         self.automaticallyAdjustsScrollViewInsets = false
         
+        if recipe.title != nil{
+            recipetitle.text = recipe.title
+        }
+        
+        if recipe.instructions != nil{
+            recipeinstructions.text = recipe.instructions
+        }
+        
+        if recipe.cookmin != nil{
+            recipecooktime.text = "Cook Time: \(recipe.cookmin!) mins"
+        }else if recipe.cookmin! == 0{
+            recipecooktime.hidden = true
+        }
+        
+        if recipe.prepMin != nil{
+            recipepreptime.text = "Prep Time: \(recipe.prepMin!) mins"
+        }
+        
+        if recipe.servings != nil{
+            recipeserving.text = "Serving: \(recipe.servings!)"
+        }
+        
+        if image != nil{
+            recipeImage.image = image
+        }
         //recipepreptime.text = jsonParserDetail.recipe.recipepreptime
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if rectitle != ""{
-            recipetitle.text = rectitle
-        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +76,11 @@ class RecipeViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if(recipe.ingredients.count > 0){
+            return recipe.ingredients.count
+        }else{
+            return 1
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -60,8 +90,10 @@ class RecipeViewController: UIViewController, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ingcell", forIndexPath: indexPath)
         
-        //cell.textLabel?.text = jsonParserDetail.recipe.ingredients[indexPath.row].name
-        cell.detailTextLabel?.text = "info"
+        let ingredient = recipe.ingredients[indexPath.row]
+        
+        cell.textLabel?.text = ingredient.info
+        //cell.detailTextLabel?.text = ingredient.aisle
         
         return cell
     }
