@@ -87,13 +87,17 @@ class RecipeTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let recipe = jsonParse.mReicpeList[indexPath.row]
-        let id = recipe["id"]
-        
+        let id = recipe["id"]!
+        let recipeDetail = MashapeJsonParser()
+        let rec = recipeDetail.recipe
         
         let recipeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("recipeVC") as! RecipeViewController
         
-        recipeVC.id = id!
-        recipeVC.recipeImage.image = jsonParse.imgList[id!]
+        recipeVC.id = id
+        
+        //recipeVC.rectitle = rec.title
+        
+        //print("MRECIPE: \(rec.title)")
         
         showViewController(recipeVC, sender: self)
     }

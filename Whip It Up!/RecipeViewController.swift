@@ -15,16 +15,29 @@ class RecipeViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var recipepreptime: UILabel!
     @IBOutlet weak var recipetitle: UILabel!
     @IBOutlet weak var recipeinstructions: UILabel!
+    @IBOutlet weak var tbView: UITableView!
     
-    var id = ""
+    var id = "1234"
+    var rectitle : String!
     
     var jsonParserDetail = MashapeJsonParser()
+    var recipe = RecipeModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        jsonParserDetail.getData(id)
+        recipe = jsonParserDetail.getData(id)
+        print("RECTITLE: \(id)")
+        self.automaticallyAdjustsScrollViewInsets = false
         
+        //recipepreptime.text = jsonParserDetail.recipe.recipepreptime
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if rectitle != ""{
+            recipetitle.text = rectitle
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +60,7 @@ class RecipeViewController: UIViewController, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ingcell", forIndexPath: indexPath)
         
-        cell.textLabel?.text = "h"
+        //cell.textLabel?.text = jsonParserDetail.recipe.ingredients[indexPath.row].name
         cell.detailTextLabel?.text = "info"
         
         return cell

@@ -217,6 +217,7 @@
 				TargetAttributes = {
 					940988A61DDCCB0E00171E84 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = T3JXW3P9UL;
 					};
 					940988BA1DDCCB0F00171E84 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -433,10 +434,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T3JXW3P9UL;
 				INFOPLIST_FILE = "Whip It Up!/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mrkking.Whip-It-Up-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -444,10 +448,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T3JXW3P9UL;
 				INFOPLIST_FILE = "Whip It Up!/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mrkking.Whip-It-Up-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -516,6 +523,7 @@
 				940988D11DDCCB0F00171E84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		940988D21DDCCB0F00171E84 /* Build configuration list for PBXNativeTarget "Whip It Up!Tests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +532,7 @@
 				940988D41DDCCB0F00171E84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		940988D51DDCCB0F00171E84 /* Build configuration list for PBXNativeTarget "Whip It Up!UITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +541,7 @@
 				940988D71DDCCB0F00171E84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

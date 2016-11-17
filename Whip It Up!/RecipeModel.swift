@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 class RecipeModel{
-    var vegan = false
-    var prepMin = 0
-    var cookmin = 0
-    var title = ""
-    var servings = 0
-    var instructions = ""
+    var vegan : Bool?
+    var prepMin : Int?
+    var cookmin : Int?
+    var title : String!
+    var servings : Int!
+    var instructions : String!
     
     struct extendedIngredients {
         var info = ""
