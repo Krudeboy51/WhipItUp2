@@ -16,12 +16,13 @@
 		940988D91DDCCB4000171E84 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988D81DDCCB4000171E84 /* SwiftyJSON.swift */; };
 		940988DB1DDCCB6700171E84 /* F2FJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988DA1DDCCB6700171E84 /* F2FJsonParser.swift */; };
 		940988DD1DDCCB6C00171E84 /* MashapeJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988DC1DDCCB6C00171E84 /* MashapeJsonParser.swift */; };
-		940988DF1DDCCBB500171E84 /* grabJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988DE1DDCCBB500171E84 /* grabJson.swift */; };
 		940988E11DDCCC1000171E84 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988E01DDCCC1000171E84 /* RecipeModel.swift */; };
 		940988E31DDCCC1600171E84 /* MCONSTANTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988E21DDCCC1600171E84 /* MCONSTANTS.swift */; };
 		940988E51DDCE1FD00171E84 /* CustomTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988E41DDCE1FD00171E84 /* CustomTBVCell.swift */; };
 		940988E71DDCE22400171E84 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988E61DDCE22400171E84 /* RecipeTableViewController.swift */; };
 		940988E91DDCF6A200171E84 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940988E81DDCF6A200171E84 /* RecipeViewController.swift */; };
+		94F500E41DDE45E5003A665A /* IngredientsTBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F500E31DDE45E5003A665A /* IngredientsTBVC.swift */; };
+		94F500E61DDE4603003A665A /* instructionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F500E51DDE4603003A665A /* instructionVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +58,13 @@
 		940988D81DDCCB4000171E84 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		940988DA1DDCCB6700171E84 /* F2FJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = F2FJsonParser.swift; sourceTree = "<group>"; };
 		940988DC1DDCCB6C00171E84 /* MashapeJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeJsonParser.swift; sourceTree = "<group>"; };
-		940988DE1DDCCBB500171E84 /* grabJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grabJson.swift; sourceTree = "<group>"; };
 		940988E01DDCCC1000171E84 /* RecipeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		940988E21DDCCC1600171E84 /* MCONSTANTS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCONSTANTS.swift; sourceTree = "<group>"; };
 		940988E41DDCE1FD00171E84 /* CustomTBVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTBVCell.swift; sourceTree = "<group>"; };
 		940988E61DDCE22400171E84 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
 		940988E81DDCF6A200171E84 /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		94F500E31DDE45E5003A665A /* IngredientsTBVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsTBVC.swift; sourceTree = "<group>"; };
+		94F500E51DDE4603003A665A /* instructionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = instructionVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,9 +126,10 @@
 				940988B11DDCCB0F00171E84 /* Assets.xcassets */,
 				940988B31DDCCB0F00171E84 /* LaunchScreen.storyboard */,
 				940988B61DDCCB0F00171E84 /* Info.plist */,
-				940988DE1DDCCBB500171E84 /* grabJson.swift */,
 				940988E61DDCE22400171E84 /* RecipeTableViewController.swift */,
 				940988E81DDCF6A200171E84 /* RecipeViewController.swift */,
+				94F500E31DDE45E5003A665A /* IngredientsTBVC.swift */,
+				94F500E51DDE4603003A665A /* instructionVC.swift */,
 			);
 			path = "Whip It Up!";
 			sourceTree = "<group>";
@@ -282,15 +285,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				940988E71DDCE22400171E84 /* RecipeTableViewController.swift in Sources */,
+				94F500E61DDE4603003A665A /* instructionVC.swift in Sources */,
 				940988E11DDCCC1000171E84 /* RecipeModel.swift in Sources */,
 				940988D91DDCCB4000171E84 /* SwiftyJSON.swift in Sources */,
-				940988DF1DDCCBB500171E84 /* grabJson.swift in Sources */,
 				940988E91DDCF6A200171E84 /* RecipeViewController.swift in Sources */,
 				940988DD1DDCCB6C00171E84 /* MashapeJsonParser.swift in Sources */,
 				940988E31DDCCC1600171E84 /* MCONSTANTS.swift in Sources */,
 				940988E51DDCE1FD00171E84 /* CustomTBVCell.swift in Sources */,
 				940988AB1DDCCB0F00171E84 /* AppDelegate.swift in Sources */,
 				940988DB1DDCCB6700171E84 /* F2FJsonParser.swift in Sources */,
+				94F500E41DDE45E5003A665A /* IngredientsTBVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

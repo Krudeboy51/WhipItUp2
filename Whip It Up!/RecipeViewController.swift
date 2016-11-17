@@ -8,36 +8,63 @@
 
 import UIKit
 
-class RecipeViewController: UIViewController, UITableViewDataSource {
+class RecipeViewController: UIViewController {
 
-    @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var recipecooktime: UILabel!
-    @IBOutlet weak var recipepreptime: UILabel!
-    @IBOutlet weak var recipetitle: UILabel!
-    @IBOutlet weak var recipeinstructions: UILabel!
-    @IBOutlet weak var recipeserving: UILabel!
-    @IBOutlet weak var tbView: UITableView!
-    
+    @IBOutlet weak var recipeTitle: UILabel!
+    @IBOutlet weak var plate: UIImageView!
     var id = "1234"
     
     var jsonParserDetail = MashapeJsonParser()
     var recipe = RecipeModel()
     
+    
     var image : UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        jsonParserDetail.getData(id)
-        print("ID: \(id)")
-        recipe = jsonParserDetail.recipe
-        self.automaticallyAdjustsScrollViewInsets = false
-        
         if recipe.title != nil{
-            recipetitle.text = recipe.title
+            recipeTitle.text = recipe.title
         }
-        
+        if image != nil{
+            plate.image = image
+        }
+
+    //    self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    @IBAction func ingredients(sender: AnyObject) {
+        let ingredientVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ingredients") as! IngredientsTBVC
+        ingredientVC.recipe = recipe
+        showViewController(ingredientVC, sender: self)
+    }
+
+    @IBAction func instructions(sender: AnyObject) {
+        let instructVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("instruct") as! instructionVC
         if recipe.instructions != nil{
-            recipeinstructions.text = recipe.instructions
+            instructVC.instructions = recipe.instructions
+        }
+        showViewController(instructVC, sender: self)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+        /*
+ 
+        if recipe.instructions != nil{
+            let ins = recipe.instructions?.stringByReplacingOccurrencesOfString(".", withString: "\n")
+            recipeinstructions.text = ins
         }
         
         if recipe.cookmin != nil{
@@ -57,56 +84,9 @@ class RecipeViewController: UIViewController, UITableViewDataSource {
         if image != nil{
             recipeImage.image = image
         }
+ 
         //recipepreptime.text = jsonParserDetail.recipe.recipepreptime
         // Do any additional setup after loading the view.
-    }
+    }*/
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Ingredients:"
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(recipe.ingredients.count > 0){
-            return recipe.ingredients.count
-        }else{
-            return 1
-        }
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ingcell", forIndexPath: indexPath)
-        
-        let ingredient = recipe.ingredients[indexPath.row]
-        
-        cell.textLabel?.text = ingredient.info
-        //cell.detailTextLabel?.text = ingredient.aisle
-        
-        return cell
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
+ 
