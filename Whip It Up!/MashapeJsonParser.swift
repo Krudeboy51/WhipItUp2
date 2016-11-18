@@ -48,7 +48,7 @@ class MashapeJsonParser: NSObject{
                     let parseData = JSON.init(data: mData, options: NSJSONReadingOptions.AllowFragments, error: &jError)
                     rec.title = parseData["title"].stringValue
                     rec.vegan = parseData["vegan"].boolValue
-                    rec.prepMin = parseData["preperationMinutes"].intValue
+                    rec.prepMin = parseData["preparationMinutes"].intValue
                     rec.cookmin = parseData["cookingMinutes"].intValue
                     rec.servings = parseData["servings"].int!
                     rec.instructions = parseData["instructions"].string

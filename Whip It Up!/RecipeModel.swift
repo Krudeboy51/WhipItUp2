@@ -11,8 +11,8 @@ import UIKit
 
 class RecipeModel{
     var vegan : Bool?
-    var prepMin : Int?
-    var cookmin : Int?
+    var prepMin : Int!
+    var cookmin : Int!
     var title : String!
     var servings : Int!
     var instructions : String?

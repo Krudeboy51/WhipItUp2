@@ -101,6 +101,7 @@ class RecipeTableViewController: UITableViewController, UISearchBarDelegate {
         recipeVC.recipe.cookmin = rec.cookmin
         recipeVC.recipe.ingredients = rec.ingredients
         recipeVC.recipe.prepMin = rec.prepMin
+        recipeVC.recipe.servings = rec.servings
         recipeVC.image = jsonParse.imgList[id]
         recipeVC.recipe.instructions = rec.instructions?.stringByReplacingOccurrencesOfString(".", withString: "\n")
         

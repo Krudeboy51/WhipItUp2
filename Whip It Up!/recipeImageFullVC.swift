@@ -1,28 +1,24 @@
 //
-//  instructionVC.swift
+//  recipeImageFullVC.swift
 //  Whip It Up!
 //
-//  Created by Kory E King on 11/17/16.
+//  Created by user119166 on 11/18/16.
 //  Copyright © 2016 Kory E King. All rights reserved.
 //
 
 import UIKit
 
-class instructionVC: UIViewController {
-    
-    var instructions : String!
+class recipeImageFullVC: UIViewController {
 
-    @IBOutlet weak var text: UILabel!
-    @IBOutlet weak var scroll: UIScrollView!
+    @IBOutlet weak var mainImage: UIImageView!
+    
+    var image : UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if instructions != nil{
-            text.text = instructions.stringByReplacingOccurrencesOfString(", and", withString: "\n")
-            scroll.contentSize.height = 100
-        } else {
-            text.textAlignment = .Center
-            text.text = "No Instruction Available"
+        self.view.backgroundColor = UIColor.blackColor()
+        if image != nil{
+            mainImage.image = image
         }
         // Do any additional setup after loading the view.
     }
@@ -37,7 +33,7 @@ class instructionVC: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
