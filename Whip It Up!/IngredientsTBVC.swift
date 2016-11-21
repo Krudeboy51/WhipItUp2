@@ -22,7 +22,15 @@ class IngredientsTBVC: UITableViewController {
             checkedItems.append(false)
         }
         
-        mappedItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(IngredientsTBVC.gotoMap))
+        let button = UIButton.init(type: UIButtonType.Custom)
+        //set image for button
+        button.setImage(UIImage(named: "fb.png"), forState: UIControlState.Normal)
+        //add function for button
+        button.addTarget(self, action: "fbButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        //set frame
+        button.frame = CGRectMake(0, 0, 53, 31)
+        
+        mappedItem = UIBarButtonItem(customView: button)
         
         print(checkedItems)
         // Uncomment the following line to preserve selection between presentations
