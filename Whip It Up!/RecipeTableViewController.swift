@@ -10,19 +10,25 @@ import UIKit
 
 class RecipeTableViewController: UITableViewController, UISearchBarDelegate {
 
-    var jsonParse = F2FJsonParser()
     let searchController = UISearchController(searchResultsController: nil)
+    var recipeCollection = RecipeCollection()
+    var recipeList = [Dictionary<String, String>]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        jsonParse.search("")
-        
-        jsonParse.mReicpeList.removeAtIndex(0)
-        
         self.tableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.placeholder = "search e.g. eggs"
         searchController.searchBar.delegate = self
+        
+        recipeCollection.getRandom(){
+            (recipes) in
+            self.recipeList = recipes
+            self.tableView.reloadData()
+        }
+        
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(self.showHome)), animated: true)
 
+        //recipeCollection.
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,26 +54,27 @@ class RecipeTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return jsonParse.mReicpeList.count
+        return recipeList.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("rlistcell", forIndexPath: indexPath) as! CustomTBVCell
-        let recipe = jsonParse.mReicpeList[indexPath.row]
-        let rImg = jsonParse.imgList[recipe["id"]!]
-        cell.rectitle.text = recipe[mCONSTANTS.mashape.resultsKey.title]
+        let recipe = recipeList[indexPath.row]
+        let rImg = recipeCollection.imgList[recipe["id"]!]
+        cell.rectitle.text = recipe[Constants.resultsKey.title]
         cell.time.text = "Ready in: "
-        let time = recipe[mCONSTANTS.mashape.resultsKey.readyMin]! as String
+        let time = recipe[Constants.resultsKey.readyMin]! as String
         cell.time.text?.appendContentsOf("\(time) mins")
         cell.recimage.image = rImg
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 120
+        return 80
     }
  
+    /*
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let height = scrollView.frame.size.height
         let contentYOffset = scrollView.contentOffset.y
@@ -77,49 +84,47 @@ class RecipeTableViewController: UITableViewController, UISearchBarDelegate {
             //jsonParse.loadNextPage()
             self.tableView.reloadData()
         }
-    }
+    }*/
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        jsonParse.mReicpeList.removeAll()
-        jsonParse.search(searchBar.text!)
-        tableView.reloadData()
+        
+       // print("SEARCH BAR: LIST SIZE: \(self.recipeCollection.mReicpeList.count)")
+        recipeCollection.search(searchBar.text!){
+            (recipes) in
+            self.recipeList = recipes
+            self.tableView.reloadData()
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let recipeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("recipeVC") as! RecipeViewController
+        let recipeV = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("rcpVC") as! recipeVC
         
-        let recipe = jsonParse.mReicpeList[indexPath.row]
+        let recipe = recipeList[indexPath.row]
         let id = recipe["id"]!
         let recipeDetail = MashapeJsonParser()
         recipeDetail.getData(id)
         let rec = recipeDetail.recipe
         
-        recipeVC.id = id
+        recipeV.recipe.title = recipeDetail.recipe.title
+        recipeV.recipe.cookmin = rec.cookmin
+        recipeV.recipe.ingredients = rec.ingredients
+        recipeV.recipe.prepMin = rec.prepMin
+        recipeV.recipe.servings = rec.servings
+        recipeV.image = recipeCollection.imgList[id]
+        var instruction = rec.instructions?.stringByReplacingOccurrencesOfString(".", withString: "\n\n")
+        instruction = instruction?.stringByReplacingOccurrencesOfString("<li>", withString: "\n\n\t")
+        recipeV.recipe.instructions = instruction
         
-        recipeVC.recipe.title = recipeDetail.recipe.title
-        recipeVC.recipe.cookmin = rec.cookmin
-        recipeVC.recipe.ingredients = rec.ingredients
-        recipeVC.recipe.prepMin = rec.prepMin
-        recipeVC.recipe.servings = rec.servings
-        recipeVC.image = jsonParse.imgList[id]
-        recipeVC.recipe.instructions = rec.instructions?.stringByReplacingOccurrencesOfString(".", withString: "\n")
         
         //print("MRECIPE: \(rec.title)")
-        
-        showViewController(recipeVC, sender: self)
+ 
+        showViewController(recipeV, sender: self)
     }
     
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func showHome(){
+        let menuVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("mainmenu") as! MainViewController
+        showViewController(menuVC, sender: self)
     }
-    */
+
 }

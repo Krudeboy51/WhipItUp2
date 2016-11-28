@@ -11,12 +11,17 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
-    var window: UIWindow?
+    var window : UIWindow?
     var splitViewController : UISplitViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        let rootController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("mainmenu")
+        let navigation = UINavigationController(rootViewController: rootController)
+        self.window!.rootViewController! = navigation
+        
+        /*
         splitViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("splitVC") as? UISplitViewController
         splitViewController?.delegate = self
         
@@ -26,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         containerViewController.setEmbeddedViewController(splitViewController)
         
         window?.rootViewController = containerViewController
+         */
         return true
     }
 

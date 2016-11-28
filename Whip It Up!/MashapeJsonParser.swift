@@ -17,9 +17,9 @@ class MashapeJsonParser: NSObject{
     var recipe : RecipeModel!
     
     private func createLink(id: String)->NSURL?{
-        let urlComp = NSURLComponents(string: mCONSTANTS.mashape.serverLink)
+        let urlComp = NSURLComponents(string: Constants.serverLink)
         var linkparams = Dictionary<String, String>()
-        linkparams[mCONSTANTS.mashape.resultsKey.id] = id
+        linkparams[Constants.resultsKey.id] = id
         
         var query = Array<NSURLQueryItem>()
         
